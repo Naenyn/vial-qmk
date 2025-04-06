@@ -13,6 +13,12 @@ enum {
     _L1
 } keyboard_layers;
 
+// !! Enum keys here, repeat in vial.json
+enum naenyn_keycode {
+    N_CC1_UP = QK_KB_0,
+    N_CC1_DN
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_L0] = LAYOUT_ortho_1x1(
         LT(_L1, KC_MUTE)
@@ -27,22 +33,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [_L0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
-    [_L1] = { ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP) }
+    [_L1] = { ENCODER_CCW_CW(N_CC1_DN, N_CC1_UP) }  // !! <-- MAP KEYS HERE, OR IN VIAL
 };
 
 #endif
 
-bool encoder_update_kb(uint8_t index, bool clockwise) {
-    return encoder_update_user(index, clockwise);
-}
 
-bool encoder_update_user(uint8_t index, bool clockwise) {
-    // if (index == 0) {
-        if (clockwise) {
-            midi_send_cc(&midi_device, midi_config.channel, 1, 65);
-        } else {
-            midi_send_cc(&midi_device, midi_config.channel, 1, 63);
-        }
-    // }
-    return true; 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+	switch (keycode) {
+
+        // !! Each jey gets own functionality
+		case N_CC1_UP:
+            if (record->event.pressed) {
+                midi_send_cc(&midi_device, midi_config.channel, 1, 65);
+            }
+            return false;
+        case N_CC1_DN:
+            if (record->event.pressed) {
+                midi_send_cc(&midi_device, midi_config.channel, 1, 63);
+            }
+            return false;
+	}
+
+    return true;
 }
