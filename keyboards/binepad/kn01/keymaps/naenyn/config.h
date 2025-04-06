@@ -8,6 +8,7 @@
 #define VIAL_UNLOCK_COMBO_ROWS { 0 }
 #define VIAL_UNLOCK_COMBO_COLS { 0 }
 
+#define MIDI_ADVANCED  // !! place this here instead of kb base
 
 #define TAPPING_TERM 175
 
