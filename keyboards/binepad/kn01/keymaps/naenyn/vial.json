@@ -4,15 +4,20 @@
     },
     "customKeycodes": [
     	{
-            "name": "1_UP",
-       	    "title": "CC 1 up",
-           	"shortName": "N_CC1_UP"
+            "name": "N_CC1_UP",
+       	    "title": "CC 1 Up",
+           	"shortName": "CC1 Up"
     	},
     	{
-            "name": "1_DN",
-    	    "title": "CC 1 down",
-    	    "shortName": "N_CC1_DN"
-    	}
+            "name": "N_CC1_DN",
+    	    "title": "CC 1 Down",
+    	    "shortName": "CC1 Dn"
+    	},
+        {
+            "name": "N_CC14",
+            "title": "CC 14",
+            "shortName": "CC14"
+        }
     ],
     "lighting": "none",
     "matrix": { "rows": 1, "cols": 1 },
